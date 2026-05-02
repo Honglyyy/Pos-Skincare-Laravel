@@ -53,40 +53,4 @@ class OrderResource extends Resource
             'edit' => EditOrder::route('/{record}/edit'),
         ];
     }
-
-    public static function canViewAny(): bool
-    {
-        return auth()->user()->can('view_any_order');
-    }
-
-    public static function canCreate(): bool
-    {
-        return auth()->user()->can('create_order');
-    }
-
-    public static function canEdit($record): bool
-    {
-        return auth()->user()->can('update_order');
-    }
-
-    public static function canDelete($record): bool
-    {
-        return auth()->user()->can('delete_order');
-    }
-
-    public static function shouldRegisterNavigation(): bool
-    {
-        return auth()->user()->can('view_any_order')
-            || auth()->user()->can('create_order');
-    }
-
-    public static function getNavigationUrl(): string
-    {
-        if (auth()->user()->can('create_order')
-            && !auth()->user()->can('view_any_order')) {
-            return static::getUrl('create');
-        }
-
-        return static::getUrl(); // normal list for admin
-    }
 }

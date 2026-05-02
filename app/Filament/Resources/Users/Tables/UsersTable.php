@@ -18,6 +18,7 @@ class UsersTable
                 TextColumn::make('id')->searchable(true),
                 TextColumn::make('name')->searchable(true),
                 TextColumn::make('email')->searchable(true),
+                TextColumn::make('roles.name')->searchable(true),
 
             ])
             ->filters([

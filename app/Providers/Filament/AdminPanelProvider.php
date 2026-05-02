@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\CustomerChart;
+use App\Filament\Widgets\StatWidget;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -30,8 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Skin that cares')
-            ->brandLogo("/image/light-logo.png")
-            ->darkModeBrandLogo("/image/dark-logo.png")
+            ->brandLogo("/image/logo-nobg.png")
             ->brandLogoHeight('100px')
             ->colors([
                 'primary' => Color::Amber,

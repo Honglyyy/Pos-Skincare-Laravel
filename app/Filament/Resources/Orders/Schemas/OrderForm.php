@@ -79,7 +79,12 @@ class OrderForm
                                             $set('../../discount_amount', $discount_amount);
                                             $set('../../total_payment', $total - $discount_amount);
                                         })
-                                        ->reactive()->minValue(1),
+                                        ->reactive()->minValue(1)
+                                        ->maxValue(function(Get $get) {
+                                            $productId = $get('product_id');
+                                            $product = Product::find($productId);
+                                            return $product?-> stock ?? 0;
+                                        }),
                                     TextInput::make('price')->disabled()->numeric()->prefix("$")
                                         ->formatStateUsing(fn($state, Set $set, Get $get) => $state ?? Product::find($get('product_id'))->price??0),
                                     TextInput::make('subtotal')

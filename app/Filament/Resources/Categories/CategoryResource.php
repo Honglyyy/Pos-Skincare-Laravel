@@ -15,10 +15,19 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name'];
+    }
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return ['name'=>$record->name];
+    }
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

@@ -38,7 +38,7 @@ class OrdersTable
                         'new' => 'primary',
                         'processing' => 'warning',
                         'completed' => 'success',
-                        'canceled' => 'danger',
+                        'cancelled' => 'danger',
                     }),
                 TextColumn::make('payment_method')
                     ->sortable()

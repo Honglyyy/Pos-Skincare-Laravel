@@ -20,6 +20,10 @@ use Filament\Tables\Table;
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('status','new')->count();
+    }
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ShoppingBag;
 

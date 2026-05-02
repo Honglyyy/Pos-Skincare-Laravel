@@ -25,4 +25,32 @@ class Order extends Model
     public function orderDetails(): HasMany{
         return $this->hasMany(OrderDetail::class);
     }
+
+    protected static function booted()
+    {
+        static::updated(function ($order) {
+
+            $originalStatus = $order->getOriginal('status');
+
+            if($order->status == 'completed'){
+                foreach($order->orderDetails as $orderDetail){
+                    $product = $orderDetail->product;
+
+                    if($product){
+                        $product -> decrement('stock', $orderDetail->quantity);
+                    }
+                }
+            }
+
+            if(($order->status == 'cancelled' || $order->status == 'processing' || $order->status == 'new') && $originalStatus == 'completed'){
+                foreach($order->orderDetails as $orderDetail){
+                    $product = $orderDetail->product;
+
+                    if($product){
+                        $product -> increment('stock', $orderDetail->quantity);
+                    }
+                }
+            }
+        });
+    }
 }

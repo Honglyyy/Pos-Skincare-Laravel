@@ -29,9 +29,16 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Skin that cares')
+            ->brandLogo("/image/light-logo.png")
+            ->darkModeBrandLogo("/image/dark-logo.png")
+            ->brandLogoHeight('100px')
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->colors([
+                'primary' => Color::Cyan,
+            ])
+            ->databaseNotifications()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

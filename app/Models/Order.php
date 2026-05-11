@@ -16,6 +16,7 @@ class Order extends Model
         'discount_amount',
         'total_payment',
         'status',
+        'created_by'
     ];
 
     public function customer():BelongsTo{
@@ -52,5 +53,9 @@ class Order extends Model
                 }
             }
         });
+    }
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

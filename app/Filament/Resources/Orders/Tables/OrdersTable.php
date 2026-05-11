@@ -54,6 +54,10 @@ class OrdersTable
                         'unpaid' => 'danger',
                     })
                 ,
+                TextColumn::make('creator.name')
+                    ->label('Created By')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('order_date')->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()

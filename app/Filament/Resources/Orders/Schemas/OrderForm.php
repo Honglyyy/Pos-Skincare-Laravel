@@ -15,6 +15,7 @@ use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\Group;
 use Filament\Support\Icons\Heroicon;
+use Filament\Forms\Components\Hidden;
 use Tiptap\Nodes\Text;
 
 class OrderForm
@@ -23,6 +24,8 @@ class OrderForm
     {
         return $schema
             ->components([
+                Hidden::make('created_by')
+                    ->default(fn () => auth()->id()),
                 Select::make('customer_id')
                     ->required()
                     ->relationship('customer', 'name')

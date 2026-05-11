@@ -83,6 +83,7 @@ class OrdersTable
                     ->label('Export Orders')
                     ->color('success')
                     ->icon(Heroicon::DocumentArrowDown)
+                    ->visible(fn () => auth()->user()?->hasRole('super_admin'))
                 ,
             ]);
     }

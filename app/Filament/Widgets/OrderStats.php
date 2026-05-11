@@ -30,4 +30,9 @@ class OrderStats extends StatsOverviewWidget
                 ->color('primary')
         ];
     }
+
+    public static function canView(): bool
+    {
+        return auth()->user()?->hasRole('super_admin');
+    }
 }

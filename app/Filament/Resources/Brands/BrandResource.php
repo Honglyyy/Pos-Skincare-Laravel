@@ -11,26 +11,30 @@ use App\Filament\Resources\Brands\Schemas\BrandInfolist;
 use App\Filament\Resources\Brands\Tables\BrandsTable;
 use App\Models\Brand;
 use BackedEnum;
+use Filament\Actions\ActionGroup;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
+use UnitEnum;
 
 class BrandResource extends Resource
 {
     protected static ?string $model = Brand::class;
+
     public static function getGloballySearchableAttributes(): array
     {
         return ['name'];
-    }
-    public static function getGlobalSearchResultDetails(Model $record): array
-    {
-        return ['name'=>$record->name];
-    }
-
+        }
+        public static function getGlobalSearchResultDetails(Model $record): array
+        {
+            return ['name'=>$record->name];
+            }
+            
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-
+    protected static string|UnitEnum|null $navigationGroup = 'Product Management';
+    
     public static function form(Schema $schema): Schema
     {
         return BrandForm::configure($schema);

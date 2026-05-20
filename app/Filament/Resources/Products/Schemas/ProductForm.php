@@ -62,8 +62,8 @@ class ProductForm
                     ),
                 TextInput::make('barcode'),
                 DateTimePicker::make('expiration_date'),
-                FileUpload::make('image')->columnSpan(2),
-                RichEditor::make('description'),
+                FileUpload::make('image')->columnSpan(1),
+                RichEditor::make('description')->columnSpan(1),
             ]);
     }
 }

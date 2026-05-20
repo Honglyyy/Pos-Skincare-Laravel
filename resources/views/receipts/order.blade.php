@@ -6,7 +6,7 @@
     <style>
         /* ===== THERMAL PAPER SIZE ===== */
         @page {
-            size: 80mm auto;
+            size:80mm;
             margin: 0;
         }
 
@@ -37,7 +37,7 @@
         }
 
         .logo {
-            width: 50px;
+            width: 80px;
             margin-bottom: 5px;
         }
 

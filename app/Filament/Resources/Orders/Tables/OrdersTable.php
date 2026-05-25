@@ -16,9 +16,16 @@ use Tiptap\Nodes\Text;
 
 class OrdersTable
 {
-    public static function configure(Table $table): Table
-    {
+    public static function configure(Table $table): Table{
+        if (! auth()->user()->hasAnyRole([
+            'super_admin',
+            'MANAGER',
+        ], 'filament')) {
+
+            return $table->columns([]);
+        }
         return $table
+        
             ->columns([
                 TextColumn::make('customer.name')
                     ->numeric()
@@ -91,4 +98,5 @@ class OrdersTable
                 ,
             ]);
     }
+    
 }

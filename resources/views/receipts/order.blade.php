@@ -85,6 +85,7 @@
     <div>Invoice #{{ $order->id }}</div>
     <div>{{ now()->format('d/m/Y H:i') }}</div>
     <div>Status: {{ $order->payment_status }}</div>
+    <div>Cashier: {{ $order->created_by }}</div>
 </div>
 
 <div class="line"></div>

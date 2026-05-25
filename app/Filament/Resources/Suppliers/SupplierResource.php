@@ -29,7 +29,7 @@ class SupplierResource extends Resource
         return ['name'=>$record->name];
     }
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::UserCircle;
     protected static string|UnitEnum|null $navigationGroup = 'Product Management';
 
     public static function form(Schema $schema): Schema

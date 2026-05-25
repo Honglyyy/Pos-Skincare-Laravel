@@ -32,7 +32,7 @@ class BrandResource extends Resource
             return ['name'=>$record->name];
             }
             
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Bookmark;
     protected static string|UnitEnum|null $navigationGroup = 'Product Management';
     
     public static function form(Schema $schema): Schema

@@ -85,7 +85,7 @@
     <div>Invoice #{{ $order->id }}</div>
     <div>{{ now()->format('d/m/Y H:i') }}</div>
     <div>Status: {{ $order->payment_status }}</div>
-    <div>Cashier: {{ $order->created_by }}</div>
+    <div>Cashier: {{ $order->creator->name }}</div>
 </div>
 
 <div class="line"></div>
@@ -106,8 +106,8 @@
         <tr>
             <td>{{ $item->product->name }}</td>
             <td>{{ $item->quantity }}</td>
-            <td class="right">{{ $item->product->price }}</td>
-            <td class="right">{{ $item->subtotal }}</td>
+            <td class="right">{{ $item->product->price }}$</td>
+            <td class="right">{{ $item->subtotal }}$</td>
         </tr>
         @endforeach
     </tbody>
@@ -118,7 +118,7 @@
 <!-- TOTALS -->
 <div class="total-row">
     <div>Total</div>
-    <div>{{ $order->total_price }}</div>
+    <div>{{ $order->total_price }}$</div>
 </div>
 
 <div class="total-row">
@@ -128,7 +128,7 @@
 
 <div class="total-row bold">
     <div>Final</div>
-    <div>{{ $order->total_payment }}</div>
+    <div>{{ $order->total_payment }}$</div>
 </div>
 
 <div class="line"></div>

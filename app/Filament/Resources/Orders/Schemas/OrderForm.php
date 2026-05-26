@@ -4,7 +4,6 @@ namespace App\Filament\Resources\Orders\Schemas;
 
 use App\Models\Product;
 use Filament\Actions\Action;
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -16,7 +15,8 @@ use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\Group;
 use Filament\Support\Icons\Heroicon;
 use Filament\Forms\Components\Hidden;
-use Tiptap\Nodes\Text;
+use Filament\Schemas\Components\Image as SchemaImage;
+use Illuminate\Support\Facades\Storage;
 
 class OrderForm
 {
@@ -67,6 +67,20 @@ class OrderForm
                                                 $set('../../total_payment', $total - $discount_amount);
                                             }
                                         ),
+                                    SchemaImage::make(function (Get $get) {
+                                            $product = Product::find($get('product_id'));
+
+                                            if (! $product?->image) {
+                                                return '';
+                                            }
+
+                                            return route('private-image', ['path' => $product->image]);
+                                        }, function (Get $get) {
+                                            $product = Product::find($get('product_id'));
+                                            return $product?->name ?? 'Product image';
+                                        })
+                                        ->disabled()
+                                        ->columnSpan(1),
                                     TextInput::make('quantity')->numeric()->default(1)
                                         ->afterStateUpdated(function ($state, Set $set, Get $get) {
                                             $price = $get('price') ?? 0;
@@ -95,7 +109,8 @@ class OrderForm
                                         ->disabled()
                                         ->dehydrated()
                                         ->prefix("$"),
-                                ])->columns(4)->addAction(fn(Action $action): Action => $action ->label('Add Product')->color('primary')->icon(Heroicon::Plus))
+
+                                ])->columns(5)->addAction(fn(Action $action): Action => $action ->label('Add Product')->color('primary')->icon(Heroicon::Plus))
                         ])->columnSpan(2),
                 ])->columnSpan(2),
 
